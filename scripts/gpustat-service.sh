@@ -11,6 +11,7 @@ usage() {
 Usage:
   ./scripts/gpustat-service.sh install
   ./scripts/gpustat-service.sh uninstall
+  ./scripts/gpustat-service.sh build
   ./scripts/gpustat-service.sh enable
   ./scripts/gpustat-service.sh disable
   ./scripts/gpustat-service.sh start
@@ -33,8 +34,12 @@ cmd="${1:-}"
 case "${cmd}" in
   install)
     need_root "$@"
+    "${ROOT_DIR}/scripts/build-prod.sh"
     install -D -m 0644 "${UNIT_SOURCE}" "${SYSTEMD_PATH}"
     systemctl daemon-reload
+    ;;
+  build)
+    "${ROOT_DIR}/scripts/build-prod.sh"
     ;;
   uninstall)
     need_root "$@"

@@ -8,10 +8,4 @@ export PATH="${NODE_BIN_DIR}:${PATH}"
 export NODE_ENV=production
 
 cd "${ROOT_DIR}"
-
-if [[ ! -f ".next/BUILD_ID" ]]; then
-  echo "Production build is missing. Run ./scripts/build-prod.sh first." >&2
-  exit 1
-fi
-
-exec npm run start
+exec npm run build

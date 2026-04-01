@@ -12,13 +12,14 @@ sudo ./scripts/gpustat-service.sh enable
 sudo ./scripts/gpustat-service.sh start
 ```
 
-설치가 끝나면 부팅 시 자동으로 시작됩니다.
+설치가 끝나면 `prod build` 결과를 기준으로 부팅 시 자동으로 시작됩니다.
 
 ## 사용
 
 서비스 관리:
 
 ```bash
+./scripts/gpustat-service.sh build
 sudo ./scripts/gpustat-service.sh start
 sudo ./scripts/gpustat-service.sh stop
 sudo ./scripts/gpustat-service.sh restart
@@ -56,5 +57,6 @@ rm -rf /home/shimdx/Workspace/gpustat
 
 ## 참고
 
-- 현재 서비스는 이 환경 호환성 때문에 `next start` 대신 `npm run dev` 기반으로 실행됩니다.
+- 서비스는 `prod build`가 존재할 때만 시작됩니다.
+- 코드 변경 후에는 `./scripts/gpustat-service.sh build` 후 `sudo ./scripts/gpustat-service.sh restart`를 실행하면 됩니다.
 - `gpustat`가 NVIDIA 드라이버를 읽지 못하면 대시보드에 에러가 그대로 표시됩니다.
